@@ -62,51 +62,80 @@ The objective of this project is to identify and analyze factors that influence 
 # CODE
 
 import pandas as pd
-import matplotlib.pyplot as plt
+
+import matplotlib.pyplot as plt 
+
 import seaborn as sns
+
 from sklearn.model_selection import train_test_split
+
 from sklearn.linear_model import LinearRegression
+
 from sklearn.metrics import mean_squared_error, mean_absolute_error
+
 import math
+
 import pylab
+
 import scipy.stats as stats
+
 
 # Load the dataset
 df = pd.read_csv('Ecommerce Customers')
 
 # Initial exploration
 df.head()
+
 df.info()
+
 df.describe()
 
 # Data visualization
+
 sns.jointplot(x='Time on Website', y='Yearly Amount Spent', data=df, alpha=0.5)
+
 sns.jointplot(x='Time on App', y='Yearly Amount Spent', data=df, alpha=0.5)
+
 sns.pairplot(df, kind='scatter', plot_kws={'alpha': 0.4})
+
 sns.lmplot(x='Length of Membership', y='Yearly Amount Spent', data=df, scatter_kws={'alpha': 0.3})
 
 # Feature selection and data splitting
+
 X = df[['Avg. Session Length', 'Time on App', 'Time on Website', 'Length of Membership']]
+
 Y = df['Yearly Amount Spent']
+
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.3, random_state=42)
 
 # Model training
+
 lm = LinearRegression()
+
 lm.fit(X_train, Y_train)
+
 cdf = pd.DataFrame(lm.coef_, X.columns, columns=['coef'])
+
 print(cdf)
 
 # Predictions and evaluation
+
 Predictions = lm.predict(X_test)
+
 print('Mean Absolute Error:', mean_absolute_error(Y_test, Predictions))
+
 print('Mean Squared Error:', mean_squared_error(Y_test, Predictions))
+
 print('Root Mean Squared Error:', math.sqrt(mean_squared_error(Y_test, Predictions)))
 
 # Residual analysis
+
 residuals = Y_test - Predictions
+
 sns.displot(residuals, bins=30, kde=True)
 
 # Q-Q plot
-stats.probplot(residuals, dist="norm", plot=pylab)
-pylab.show()
 
+stats.probplot(residuals, dist="norm", plot=pylab)
+
+pylab.show()
