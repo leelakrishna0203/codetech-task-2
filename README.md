@@ -1,5 +1,17 @@
 # codetech-task-2
-# E-commerce Customer Analysis
+Name:M LEELAKRISHNA
+
+Company:CODETECH IT SOLUTIONS
+
+ID:CT6DS708
+
+Date:June25th to August10th,2024
+
+Mentor:Muzammil Ahmed
+
+## Overview of the Project
+
+## Project:Preditive Modeling with Linear Regression on E-commerce Customer Analysis
 
 This project analyzes customer data from an e-commerce platform to understand key factors influencing yearly spending. The analysis includes data visualization, feature selection, model training, and evaluation using linear regression.
 
@@ -47,6 +59,7 @@ The objective of this project is to identify and analyze factors that influence 
   - Pandas for data manipulation
   - Matplotlib and Seaborn for data visualization
   - Scikit-learn for machine learning
+# CODE
 
 import pandas as pd
 import matplotlib.pyplot as plt
